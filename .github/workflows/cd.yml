@@ -45,6 +45,34 @@ jobs:
     - name: Push Docker Image
       run: docker push nehal524/youtube-backend:latest
 
+  aws-deploy:
+
+    # aws server - ec2 instance
+    needs: deploy
+    runs-on: self-hosted
+
+    steps:
+        # switch branch - (main)
+    - uses: actions/checkout@v4
+
+    # step 1
+    - name : pull latest docker image
+      run: docker pull nehal524/youtube-backend:latest
+    #  step 2
+    - name: Remove exsisting container
+      run: docker rm -f yt-backend || true
+# docker hub - 2367te346tr3t2ewyquert7yer
+
+    - name: Run Redis inside container
+      run: docker run -d --name redis redis:latest
+
+    - name: Run Docker Cointainer for YT-Backend App
+      run: docker run -d --name yt-backend --link redis:redis -p 4000:4000 -e MONGO_URI="${{secrets.MONGO_DB_URI}}"  nehal524/youtube-backend:latest
+
+
+
+
+
 
 
 

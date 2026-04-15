@@ -9,6 +9,6 @@ router.get("/get-account-details", getAccountDetails);
 
 router.get("/get-all-details/:userId", getAllDetails);
 
-router.get("/release-result/:userId", getResultFromCbse)
+router.get("/release-result/:userId", getResultFromCbse);
 
 module.exports = router
