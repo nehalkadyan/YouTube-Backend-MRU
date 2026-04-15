@@ -29,7 +29,7 @@ app.use("/api", userRouter)
 app.use("/api/channel", channelRouter)
 
 app.get("/", (req, res) => {
-    return res.send("Welcome to YouTube Backend")
+    return res.send("Xebia MRU")
 })
 
 // video
